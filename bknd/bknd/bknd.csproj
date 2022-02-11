@@ -21,4 +21,9 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Team\TeamRequest.cs" />
+      <Compile Remove="Team\AddTeamVIEW.cs" />
+    </ItemGroup>
+
 </Project>

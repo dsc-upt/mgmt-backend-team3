@@ -8,7 +8,8 @@ namespace bknd.DataBase
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
-                //crearea tabelului users
+                
         public DbSet<User> users { get; set; }
+        public DbSet<Team.Team> teams { get; set; }
     }
 }
