@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,14 @@ namespace bknd.Users
             return await _datacontext.users.ToListAsync();
         }
 
+        [HttpGet]
+        [Route("/{id}")]
+        public async Task<User>GetById(Guid id)
+        {
+            var usr = await _datacontext.users.FirstOrDefaultAsync(x => x.Id == id.ToString());
+            if (usr is null) return null;
+            return usr;
+        }
         [HttpPost]
         public async Task<User> Post(UserRequest entity)
         {
