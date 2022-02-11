@@ -26,20 +26,33 @@ namespace bknd.Users
         [HttpPost]
         public async Task<User> Post(UserRequest entity)
         {
-            var usr = new User
+            try
             {
-                Id = Guid.NewGuid().ToString(),
-                Created = DateTime.Now,
-                Updated = DateTime.Now,
-                Firstname = entity.Firstname,
-                Lastname = entity.Lastname,
-                Email = entity.Email,
-                Roles = entity.Roles
-            };
-            var result = await _datacontext.AddAsync(usr);
-            await _datacontext.SaveChangesAsync();
-            return result.Entity;
+                var usr = new User
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Created = DateTime.Now,
+                    Updated = DateTime.Now,
+                    Firstname = entity.Firstname,
+                    Lastname = entity.Lastname,
+                    Roles = entity.Roles
+                    
+                };
+                if (!Verify.Email(entity.Email))
+                    return null;
+                usr.Email = entity.Email;
+                var result = await _datacontext.AddAsync(usr);
+                await _datacontext.SaveChangesAsync();
+                return result.Entity;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
+      
         
     }
 }
