@@ -4,7 +4,7 @@ namespace bknd.Users
 {
     public class UserRequest
     {
-       
+       public string Id { get; set; }
         public string Firstname { get; set; }
        
         public string Lastname { get; set; }

@@ -62,6 +62,20 @@ namespace bknd.Users
            
         }
 
+        [HttpPut]
+        public async Task<User> Update(UserRequest user)
+        {
+            var usr = await _datacontext.users.FirstOrDefaultAsync(x => x.Id == user.Id);
+            if (usr is null) return null;
+            usr.Email = user.Email;
+            usr.Firstname = user.Firstname;
+            usr.Lastname = user.Lastname;
+            usr.Roles = user.Roles;
+            usr.Updated = DateTime.UtcNow;
+
+            await _datacontext.SaveChangesAsync();
+            return usr;
+        }
         [HttpDelete]
         public async Task<User> Delete(Guid id)
         {
