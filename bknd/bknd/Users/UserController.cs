@@ -12,7 +12,7 @@ namespace bknd.Users
     public class UserController : ControllerBase
     {
         private readonly DataContext _datacontext;
-
+        
         public UserController(DataContext dataContext)
         {
             this._datacontext = dataContext;
@@ -60,6 +60,16 @@ namespace bknd.Users
                 throw;
             }
            
+        }
+
+        [HttpDelete]
+        public async Task<User> Delete(Guid id)
+        {
+            var usr = await _datacontext.users.FirstOrDefaultAsync(x => x.Id == id.ToString());
+            if (usr is null) return null;
+            var result = _datacontext.users.Remove(usr);
+            await _datacontext.SaveChangesAsync();
+            return usr;
         }
       
         
