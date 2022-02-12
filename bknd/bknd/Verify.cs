@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 
 namespace bknd
 {
@@ -11,6 +15,27 @@ namespace bknd
             if (!regex.IsMatch(email))
                 return false;
             return true;
+        }
+
+        public static List<String> GetRolesList(string roles)
+        {
+            var rolesArr = roles.Split(",");
+            return new List<string>(rolesArr);
+            
+        }
+
+        public static string GetRolesString(List<String> rolesList)
+        {
+            var roleArr=rolesList.ToArray();
+            return String.Join(",",roleArr);
+        }
+
+        public static string Roles(string roles)
+        {
+            roles = roles.Replace(" ", ",");
+            if (roles.EndsWith(","))
+                roles = roles.Remove(roles.LastIndexOf(","));
+            return roles;
         }
     }
 }
