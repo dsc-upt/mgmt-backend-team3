@@ -14,7 +14,7 @@ namespace bknd.Users
         public string Lastname { get; set; }
         [Required]
         public string Email { get; set; }
-        [Required]
+      
         public string Roles { get; set; }
     }
 }
