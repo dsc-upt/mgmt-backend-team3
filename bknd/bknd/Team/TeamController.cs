@@ -31,6 +31,7 @@ namespace bknd.Team
             {
                 var team = new Team
                 {
+                    name = teamV.name,
                     Created = DateTime.UtcNow,
                     Updated = DateTime.UtcNow,
                     Id = Guid.NewGuid().ToString(),

@@ -24,6 +24,23 @@ namespace bknd
             if (usr is null) return null;
             return usr;
         }
+        public static bool phoneNumber(string number)
+        {
+            if (number.Length != 10)
+                return false;
+            foreach (var digit in number)
+            {
+                if (digit < '0' || digit > '9')
+
+                {
+                    return false;
+                    Console.WriteLine(digit);
+                }
+                
+            }
+
+            return true;
+        }
         public static bool Email(string email)
         {
             string EmailPattern=@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";

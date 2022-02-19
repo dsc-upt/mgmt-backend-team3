@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using bknd.DataBase;
 
@@ -11,9 +12,10 @@ using bknd.DataBase;
 namespace bknd.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220219192210_UserProfileMigration")]
+    partial class UserProfileMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,33 +64,7 @@ namespace bknd.Migrations
                     b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("fbLink")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("phoneNum")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("teamId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("userId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("teamId");
-
-                    b.HasIndex("userId");
 
                     b.ToTable("userprofiles");
                 });
@@ -132,23 +108,6 @@ namespace bknd.Migrations
                         .HasForeignKey("TeamLeadId");
 
                     b.Navigation("TeamLead");
-                });
-
-            modelBuilder.Entity("bknd.UserProfile.UserProfile", b =>
-                {
-                    b.HasOne("bknd.Team.Team", "team")
-                        .WithMany()
-                        .HasForeignKey("teamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("bknd.Users.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId");
-
-                    b.Navigation("team");
-
-                    b.Navigation("user");
                 });
 #pragma warning restore 612, 618
         }

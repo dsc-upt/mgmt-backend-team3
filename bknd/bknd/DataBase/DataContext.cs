@@ -11,5 +11,6 @@ namespace bknd.DataBase
                 
         public DbSet<User> users { get; set; }
         public DbSet<Team.Team> teams { get; set; }
+        public DbSet<UserProfile.UserProfile> userprofiles { get; set; }
     }
 }
