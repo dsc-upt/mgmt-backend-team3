@@ -21,6 +21,8 @@ namespace bknd.Users
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<List<User>> Get()
         {
             return await _datacontext.users.ToListAsync();
@@ -117,6 +119,7 @@ namespace bknd.Users
             usr.Roles = Verify.GetRolesString(rolesList);
             await _datacontext.SaveChangesAsync();
             return usr;
+            
         }
         [HttpDelete]
         public async Task<User> Delete(Guid id)
