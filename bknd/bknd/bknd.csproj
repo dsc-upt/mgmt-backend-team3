@@ -25,6 +25,7 @@
     <ItemGroup>
       <Compile Remove="Team\TeamRequest.cs" />
       <Compile Remove="Team\AddTeamVIEW.cs" />
+      <Compile Remove="Workshops\Workshops.cs" />
     </ItemGroup>
 
 </Project>
